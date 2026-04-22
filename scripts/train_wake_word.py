@@ -28,9 +28,10 @@ _LOGGER = logging.getLogger(__name__)
 REPO_ROOT = Path(__file__).resolve().parent.parent
 MODELS_DIR = REPO_ROOT / "models"
 PRETRAINED_MODELS = {
-    "hey_jarvis": "https://github.com/dscripka/openWakeWord/releases/download/v0.5.0/hey_jarvis.onnx",
-    "alexa": "https://github.com/dscripka/openWakeWord/releases/download/v0.5.0/alexa.onnx",
-    "hey_mycroft": "https://github.com/dscripka/openWakeWord/releases/download/v0.5.0/hey_mycroft.onnx",
+    "hey_jarvis": "https://github.com/dscripka/openWakeWord/releases/download/v0.5.1/hey_jarvis_v0.1.onnx",
+    "alexa": "https://github.com/dscripka/openWakeWord/releases/download/v0.5.1/alexa_v0.1.onnx",
+    "hey_mycroft": "https://github.com/dscripka/openWakeWord/releases/download/v0.5.1/hey_mycroft_v0.1.onnx",
+    "hey_rhasspy": "https://github.com/dscripka/openWakeWord/releases/download/v0.5.1/hey_rhasspy_v0.1.onnx",
 }
 
 

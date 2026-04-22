@@ -39,7 +39,7 @@ class WakeWordHandler:
     """Handles one Wyoming client connection."""
 
     def __init__(self, model_path: str, threshold: float = 0.5, cooldown: float = 2.0):
-        self.model = Model(wakeword_models=[str(model_path)])
+        self.model = Model(wakeword_model_paths=[str(model_path)])
         self.model_name = Path(model_path).stem
         self.threshold = threshold
         self.cooldown = cooldown
