@@ -9,6 +9,7 @@ DEVICE=${WHISPER_DEVICE:-cuda}
 
 cd "$(dirname "$0")"
 source "$ENV_PATH/bin/activate"
+export HF_ENDPOINT=https://hf-mirror.com
 
 python3 server.py &
 echo $! > service.pid

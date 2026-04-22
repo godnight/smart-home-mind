@@ -28,6 +28,24 @@ services:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
+  wyoming-wake-word:
+    build: ./wyoming-wake-word
+    container_name: shm-wake-word
+    ports:
+      - "10400:10400"
+    volumes:
+      - ./models:/models
+    environment:
+      - WAKE_WORD_MODEL=/models/hey_jarvis.onnx
+      - WAKE_WORD_THRESHOLD=0.5
+      - WAKE_WORD_COOLDOWN=2.0
+      - WYOMING_URI=tcp://0.0.0.0:10400
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
   llm-gateway:
     build: ./llm-gateway
     container_name: shm-llm
@@ -36,3 +54,4 @@ services:
     env_file:
       - config/.env
     restart: unless-stopped
+
