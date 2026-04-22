@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  wyoming-stt:
+    build: ./wyoming-stt-whisper
+    container_name: shm-stt
+    ports:
+      - "10300:10300"
+    volumes:
+      - ./data/whisper-models:/models
+    environment:
+      - WHISPER_MODEL=base
+    restart: unless-stopped
+
+  wyoming-tts:
+    build: ./wyoming-tts-cosyvoice
+    container_name: shm-tts
+    ports:
+      - "10301:10301"
+    volumes:
+      - ./data/cosyvoice-models:/models
+    restart: unless-stopped
+
+  llm-gateway:
+    build: ./llm-gateway
+    container_name: shm-llm
+    ports:
+      - "8080:8080"
+    env_file:
+      - config/.env
+    restart: unless-stopped
