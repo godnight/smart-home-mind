@@ -2,23 +2,30 @@ version: "3.8"
 
 services:
   wyoming-stt:
-    build: ./wyoming-stt-whisper
-    container_name: shm-stt
+    build: ./wyoming-stt-adapter
+    container_name: shm-stt-adapter
     ports:
-      - "10300:10300"
-    volumes:
-      - ./data/whisper-models:/models
+      - "10310:10310"
     environment:
-      - WHISPER_MODEL=base
+      - STT_BACKEND_URL=http://host.docker.internal:10300
+      - STT_LANGUAGE=zh
+      - STT_MODEL=base
+      - WYOMING_URI=tcp://0.0.0.0:10310
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
   wyoming-tts:
-    build: ./wyoming-tts-cosyvoice
-    container_name: shm-tts
+    build: ./wyoming-tts-adapter
+    container_name: shm-tts-adapter
     ports:
-      - "10301:10301"
-    volumes:
-      - ./data/cosyvoice-models:/models
+      - "10311:10311"
+    environment:
+      - TTS_BACKEND_URL=http://host.docker.internal:5000
+      - TTS_VOICE=default
+      - WYOMING_URI=tcp://0.0.0.0:10311
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
   llm-gateway:

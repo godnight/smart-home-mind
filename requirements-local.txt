@@ -1,0 +1,6 @@
+# 本地 GPU 服务依赖（宿主机运行）
+faster-whisper
+torch>=2.0.0
+numpy
+
+# CosyVoice2 需要从源码安装，见 services/cosyvoice2/README.md
